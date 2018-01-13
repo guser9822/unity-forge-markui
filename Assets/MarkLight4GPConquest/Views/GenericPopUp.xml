@@ -1,0 +1,6 @@
+<GenericPopUp xmlns="MarkLight">
+  <!--<Button Click="ToggleWindow" Text="Toggle Window" AdjustToText="Width" Alignment="TopLeft" Offset="25,25,0,0" />-->
+  <Window Id="Window" Title="Alert" Width="300px" Height="200px">
+    <Label Style="ShowcaseDescription" Text="Information" Width="60%" Height="60%" TextAlignment="Center" Margin="50px" />
+  </Window>
+</GenericPopUp>
