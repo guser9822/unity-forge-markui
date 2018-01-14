@@ -11,9 +11,7 @@ namespace TC.GPConquest.MarkLight4GPConquest {
         public ServerStart ServerStart;
         public ServerOptions ServerOptions;
         public Button ToggleServerActivationButton;
-        
-        private static readonly string StartServerLabel = "Start Server";
-        private static readonly string StopServerLabel = "Stop Server";
+        public Button ServerOptionsButton;
 
         public override void Initialize()
         {
@@ -31,16 +29,16 @@ namespace TC.GPConquest.MarkLight4GPConquest {
         public void ToggleServerActivation()
         {
             string label = ToggleServerActivationButton.Text;
-            if (label.Equals(StartServerLabel))
+            if (label.Equals(UIInfoLayer.StartServerLabel))
             {
-                ToggleServerActivationButton.Text.Value = StopServerLabel;
+                ToggleServerActivationButton.Text.Value = UIInfoLayer.ServerStatusLabel;
                 ContentViewSwitcher.SwitchTo(1);
                 ServerStart.StartServer();
+                ServerOptionsButton.IsVisible.Value = false;
             }
-            else if(label.Equals(StopServerLabel))
+            else if(label.Equals(ToggleServerActivationButton.Text.Value = UIInfoLayer.ServerStatusLabel))
             {
-                ToggleServerActivationButton.Text.Value = StartServerLabel;
-                ContentViewSwitcher.SwitchTo(2);
+                ContentViewSwitcher.SwitchTo(1);
             }
         }
 

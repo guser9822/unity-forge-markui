@@ -11,7 +11,13 @@ namespace TC.GPConquest.MarkLight4GPConquest
         public _string ServerStatus;
         public GenericPopUp GenericPopUp;
         public ServerOptions ServerOptions;
-         
+        public ServerController ServerController;
+
+        public void Awake()
+        {
+            ServerController = FindObjectOfType<ServerController>();
+        }
+
         public void StartServer()
         {
             if (ServerOptions != null)
