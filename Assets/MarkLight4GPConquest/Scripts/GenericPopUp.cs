@@ -9,18 +9,23 @@ namespace TC.GPConquest.MarkLight4GPConquest
     [HideInPresenter]
     public class GenericPopUp : UIView
     {
-        public Window Window;
-        public _string GenericPopUpMessage;
+        public Window GenericWindow;
+        public string GenericPopUpMessage;
+
+        public void Start()
+        {
+            ToggleWindow();
+        }
 
         public void ToggleWindow()
         {
-            if (Window.IsOpen)
+            if (GenericWindow.IsOpen)
             {
-                Window.Close();
+                GenericWindow.Close();
             }
             else
             {
-                Window.Open();
+                GenericWindow.Open();
             }
         }
 

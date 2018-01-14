@@ -20,12 +20,6 @@ namespace TC.GPConquest.MarkLight4GPConquest
         [MapTo("ComboBoxProtocols.SelectedItem")]
         public _object XProtocol;
 
-        #region Error messages
-        public string ServerOptsNullMessage = "Server options can't be null.";
-        [MapTo("ServerOptsNullMessage")]
-        public _string OptsNull;
-        #endregion
-
         public override void Initialize()
         {
             base.Initialize();
