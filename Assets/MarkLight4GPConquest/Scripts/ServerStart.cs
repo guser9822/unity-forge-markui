@@ -17,6 +17,7 @@ namespace TC.GPConquest.MarkLight4GPConquest
             if (ServerOptions != null)
             {
                 //start forge server
+                //start forge
             }
             else
             {
