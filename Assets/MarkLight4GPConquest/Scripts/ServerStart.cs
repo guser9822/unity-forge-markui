@@ -14,17 +14,15 @@ namespace TC.GPConquest.MarkLight4GPConquest
          
         public void StartServer()
         {
-            //if (ServerOptions != null)
-            //{
-            //    Debug.Log("startted");
-            //}
-            //else
-            //{
-                Debug.Log("error null");
-                GenericPopUp.GenericPopUpMessage = UIInfoLayer.ServerOptsNullMessage;
-                Debug.Log("Message : "+GenericPopUp.GenericPopUpMessage);
+            if (ServerOptions != null)
+            {
+                //start forge server
+            }
+            else
+            {
+                GenericPopUp.GenericPopUpMessage.Value = UIInfoLayer.ServerOptsNullMessage;
                 GenericPopUp.ToggleWindow();
-            //}
+            }
         }
 
         public void StopServer(ServerOptions _ServerOptions)

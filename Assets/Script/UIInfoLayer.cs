@@ -10,8 +10,6 @@ namespace TC.GPConquest.MarkLight4GPConquest
 
         #region Error messages
         public static readonly string ServerOptsNullMessage = "Server options can't be null.";
-        //[MapTo("ServerOptsNullMessage")]
-        //public _string OptsNull;
         #endregion
     }
 
