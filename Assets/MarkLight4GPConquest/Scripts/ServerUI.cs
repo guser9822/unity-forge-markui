@@ -50,8 +50,8 @@ namespace TC.GPConquest.MarkLight4GPConquest {
         public void CallCloseServer()
         {
             ContentViewSwitcher.SwitchTo(0);
-            //Application.Quit();
-        }
+            Application.Quit();
+    }
 
   }
 

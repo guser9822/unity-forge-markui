@@ -24,7 +24,7 @@ namespace TC.GPConquest.MarkLight4GPConquest
         {
             base.Initialize();
             // initialize and populate ip list
-            InternetProtocols = InitializeIPList("UDP","TCP");
+            InternetProtocols = InitializeIPList(UIInfoLayer.InternetProtocolsList);
         }
 
         private ObservableList<string> InitializeIPList(params string[] ips)

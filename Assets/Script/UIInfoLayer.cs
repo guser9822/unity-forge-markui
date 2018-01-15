@@ -11,10 +11,13 @@ namespace TC.GPConquest.MarkLight4GPConquest
         #region Error messages
         public static readonly string ServerOptsNullMessage = "Server options can't be null.";
         #endregion
-        #region UI uesr messages/label
+        #region UI user messages/label
         public static readonly string StartServerLabel = "Start Server";
         public static readonly string ServerStatusLabel = "Server Status";
-        #endregion   
+        public static readonly string UDPString = "UDP";
+        public static readonly string TCPString = "TCP";
+        public static readonly string[] InternetProtocolsList = { UDPString, TCPString}; 
+        #endregion
     }
 
 }

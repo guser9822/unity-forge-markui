@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using MarkLight.Views.UI;
 using MarkLight;
 
@@ -13,6 +11,7 @@ namespace TC.GPConquest.MarkLight4GPConquest
         public ServerOptions ServerOptions;
         public ServerController ServerController;
 
+
         public void Awake()
         {
             ServerController = FindObjectOfType<ServerController>();
@@ -22,8 +21,7 @@ namespace TC.GPConquest.MarkLight4GPConquest
         {
             if (ServerOptions != null)
             {
-                //start forge server
-                //start forge
+                ServerController.StartServer(ServerOptions);
             }
             else
             {
