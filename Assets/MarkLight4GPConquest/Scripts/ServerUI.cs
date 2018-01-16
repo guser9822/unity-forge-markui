@@ -10,16 +10,16 @@ namespace TC.GPConquest.MarkLight4GPConquest {
         public ViewSwitcher ContentViewSwitcher;
         public ServerStart ServerStart;
         public ServerOptions ServerOptions;
-        public Button ToggleServerActivationButton;
-        
-        private static readonly string StartServerLabel = "Start Server";
-        private static readonly string StopServerLabel = "Stop Server";
+        public Button StartServerButton;
+        public Button ServerOptionsButton;
+        public Button ServerDisconnectButton;
 
         public override void Initialize()
         {
             base.Initialize();
             //Sets references
             ServerStart.ServerOptions = ServerOptions;
+            ServerDisconnectButton.IsVisible.Value = false;
         }
 
         private void Start()
@@ -28,19 +28,18 @@ namespace TC.GPConquest.MarkLight4GPConquest {
             ServerOptions.DefaultLocalServer();
         }
 
-        public void ToggleServerActivation()
+        public void StartServerActivation()
         {
-            string label = ToggleServerActivationButton.Text;
-            if (label.Equals(StartServerLabel))
+            string label = StartServerButton.Text;
+            if (label.Equals(UIInfoLayer.StartServerLabel))
             {
-                ToggleServerActivationButton.Text.Value = StopServerLabel;
+                ToggleUIElements();
                 ContentViewSwitcher.SwitchTo(1);
                 ServerStart.StartServer();
             }
-            else if(label.Equals(StopServerLabel))
+            else if(label.Equals(StartServerButton.Text.Value = UIInfoLayer.ServerStatusLabel))
             {
-                ToggleServerActivationButton.Text.Value = StartServerLabel;
-                ContentViewSwitcher.SwitchTo(2);
+                ContentViewSwitcher.SwitchTo(1);
             }
         }
 
@@ -49,10 +48,30 @@ namespace TC.GPConquest.MarkLight4GPConquest {
             ContentViewSwitcher.SwitchTo(3);
         }
 
+        public void CallServerDisconnect()
+        {
+            ToggleUIElements();
+            ServerStart.StopServer();
+            ContentViewSwitcher.SwitchTo(0);
+        }
+
         public void CallCloseServer()
         {
             ContentViewSwitcher.SwitchTo(0);
-            //Application.Quit();
+            Application.Quit();
+        }
+
+        protected void ToggleUIElements()
+        {
+            StartServerButton.Text.Value = ToggleLabelStart();
+            ServerOptionsButton.IsVisible.Value = ServerOptionsButton.IsVisible.Value ? false : true;
+            ServerDisconnectButton.IsVisible.Value = ServerDisconnectButton.IsVisible.Value ? false : true;
+        }
+
+        private string ToggleLabelStart()
+        {
+            return StartServerButton.Text.Value.Equals(UIInfoLayer.ServerStatusLabel) ? 
+                UIInfoLayer.StartServerLabel : UIInfoLayer.ServerStatusLabel;
         }
 
   }
