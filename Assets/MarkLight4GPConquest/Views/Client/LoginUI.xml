@@ -1,0 +1,10 @@
+<LoginUI xmlns="MarkLight">
+  <Group>
+    <Group Spacing="8px">
+      <Label Text="Username" />
+      <InputField Id="InputUsername"/>
+      <Label Text="Password" />
+      <InputField Id="InputPass"/>
+    </Group>
+  </Group>
+</LoginUI>
