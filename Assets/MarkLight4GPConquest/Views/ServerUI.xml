@@ -3,7 +3,7 @@
       <Group Spacing="10px" Alignment="Center">
           <Button Id="ToggleServerActivationButton" Text="Start Server" Click="ToggleServerActivation" />
           <Button Id="ServerOptionsButton" Text="Server Options" Click="CallServerOptions" />
-          <Button Id="CloseServerButton" Text="Close erver" Click="CallCloseServer" />
+          <Button Id="CloseServerButton" Text="Exit" Click="CallCloseServer" />
       </Group>
   </Region>
   <Region Width="75%" Alignment="Right">
