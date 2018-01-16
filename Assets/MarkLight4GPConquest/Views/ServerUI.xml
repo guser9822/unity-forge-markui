@@ -1,9 +1,10 @@
 <ServerUI xmlns="MarkLight" BackgroundColor="grey">
   <Region Width="25%" Alignment="Left">
-      <Group Spacing="10px" Alignment="Center">
-          <Button Id="ToggleServerActivationButton" Text="Start Server" Click="ToggleServerActivation" />
-          <Button Id="ServerOptionsButton" Text="Server Options" Click="CallServerOptions" />
-          <Button Id="CloseServerButton" Text="Exit" Click="CallCloseServer" />
+      <Group Id="ButtonsGroup" Spacing="10px" Alignment="Center">
+        <Button Id="StartServerButton" Text="Start Server" Click="StartServerActivation" />
+        <Button Id="ServerOptionsButton" Text="Server Options" Click="CallServerOptions" />
+        <Button Id="ServerDisconnectButton" Text="Disconnect server" Click="CallServerDisconnect" />  
+        <Button Id="CloseServerButton" Text="Exit" Click="CallCloseServer" />
       </Group>
   </Region>
   <Region Width="75%" Alignment="Right">

@@ -11,7 +11,6 @@ namespace TC.GPConquest.MarkLight4GPConquest
         public ServerOptions ServerOptions;
         public ServerController ServerController;
 
-
         public void Awake()
         {
             ServerController = FindObjectOfType<ServerController>();
@@ -30,11 +29,9 @@ namespace TC.GPConquest.MarkLight4GPConquest
             }
         }
 
-        public void StopServer(ServerOptions _ServerOptions)
+        public void StopServer()
         {
-            if (_ServerOptions != null)
-                Debug.Log("Stopping server");
-            else Debug.Log("Error");
+            ServerController.EndServer();
         }
 
     }

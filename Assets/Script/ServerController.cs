@@ -159,6 +159,12 @@ public class ServerController : MonoBehaviour {
 		
 	}
 
+    public void EndServer()
+    {
+        mgr.Disconnect();
+        Destroy(mgr.gameObject);
+    }
+
     private void OnApplicationQuit()
     {
         if (getLocalNetworkConnections)

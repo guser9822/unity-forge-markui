@@ -1,4 +1,4 @@
 <ServerStart xmlns="MarkLight">
-  <Label Text="{ServerOptions.XProtocol} server started at {ServerOptions.IPAddress} : {ServerOptions.ServerPort}" />
+  <Label Text="{ServerOptions.XProtocol} server started at {ServerOptions.IpAddress} : {ServerOptions.ServerPort}" />
   <GenericPopUp Id="GenericPopUp" Style="Reset"  />
 </ServerStart>
