@@ -1,10 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using BeardedManStudios.Forge.Networking;
+﻿using BeardedManStudios.Forge.Networking;
 using BeardedManStudios.Forge.Networking.Unity;
 using BeardedManStudios.Forge.Networking.Lobby;
 using BeardedManStudios.SimpleJSON;
+using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TC.GPConquest.MarkLight4GPConquest;
@@ -18,30 +17,28 @@ public class ServerController : MonoBehaviour {
     public bool useTCP = false;
     public bool useMainThreadManagerForRPCs = true; 
     public bool getLocalNetworkConnections = false;
-    public string natServerHost = string.Empty;
-    public ushort natServerPort = 15941;
     private NetworkManager mgr;
     public GameObject networkManager;
     public bool DontChangeSceneOnConnect = false;
-    public string masterServerHost = string.Empty;
-    public ushort masterServerPort = 15940;
-    public bool useElo = false;
-    public int myElo = 0;
-    public int eloRequired = 0;
-    public bool useInlineChat = false;
 
+    public void Awake()
+    {
+        ServerIP = "127.0.0.1";
+        ServerPort = "15672";
+        NetProtocol = "UDP";
+    }
 
     protected void InitServerOptions(ServerOptions _serverOptions)
     {
-        if (_serverOptions != null)
-        {
-            ServerOptions = _serverOptions;
-            ServerIP = ServerOptions.IpAddress.Value;
-            ServerPort = ServerOptions.ServerPort.Value;
-            NetProtocol = (string)ServerOptions.XProtocol.Value;
-            useTCP = NetProtocol.Equals(UIInfoLayer.TCPString) ? true : false;
-        }
-        else throw new System.ArgumentNullException(UIInfoLayer.ServerOptsNullMessage);
+        //if (_serverOptions != null)
+        //{
+        //    ServerOptions = _serverOptions;
+        //    ServerIP = ServerOptions.IpAddress.Value;
+        //    ServerPort = ServerOptions.ServerPort.Value;
+        //    NetProtocol = (string)ServerOptions.XProtocol.Value;
+        //    useTCP = NetProtocol.Equals(UIInfoLayer.TCPString) ? true : false;
+        //}
+        //else throw new System.ArgumentNullException(UIInfoLayer.ServerOptsNullMessage);
     }
 
     protected void InitServer(ServerOptions _serverOptions)
@@ -80,11 +77,7 @@ public class ServerController : MonoBehaviour {
         else
         {
             server = new UDPServer(64);
-
-            if (natServerHost.Trim().Length == 0)
-                ((UDPServer)server).Connect(ServerIP, ushort.Parse(ServerPort));
-            else
-                ((UDPServer)server).Connect(natHost: natServerHost, natPort: natServerPort);
+            ((UDPServer)server).Connect(ServerIP, ushort.Parse(ServerPort));
         }
 
         server.playerTimeout += (player, sender) =>
@@ -116,23 +109,7 @@ public class ServerController : MonoBehaviour {
          * so we need to load dynamically our Dwarf prefab. What a fucking shit. */
         mgr.DwarfNetworkObject = new GameObject[1] { Resources.Load<GameObject>("Dwarf") };
 
-        // If we are using the master server we need to get the registration data
-        JSONNode masterServerData = null;
-        if (!string.IsNullOrEmpty(masterServerHost))
-        {
-            string serverId = "myGame";
-            string serverName = "Forge Game";
-            string type = "Deathmatch";
-            string mode = "Teams";
-            string comment = "Demo comment...";
-
-            masterServerData = mgr.MasterServerRegisterData(networker, serverId, serverName, type, mode, comment, useElo, eloRequired);
-        }
-
-        mgr.Initialize(networker, masterServerHost, masterServerPort, masterServerData);
-
-        if (useInlineChat && networker.IsServer)
-            SceneManager.sceneLoaded += CreateInlineChat;
+        mgr.Initialize(networker);
 
         if (networker is IServer)
         {
@@ -146,23 +123,11 @@ public class ServerController : MonoBehaviour {
         }
     }
 
-    private void CreateInlineChat(Scene arg0, LoadSceneMode arg1)
-    {
-        SceneManager.sceneLoaded -= CreateInlineChat;
-        var chat = NetworkManager.Instance.InstantiateChatManager();
-        DontDestroyOnLoad(chat.gameObject);
-    }
-
     public void StartServer(ServerOptions _serverOptions)
     {
         InitServer(_serverOptions);
         Host();
     }
-
-    // Update is called once per frame
-    void Update () {
-		
-	}
 
     public void EndServer()
     {
