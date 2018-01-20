@@ -14,31 +14,31 @@ public class ServerController : MonoBehaviour {
     public string ServerIP;
     public string ServerPort;
     public string NetProtocol;
-    public bool useTCP = false;
-    public bool useMainThreadManagerForRPCs = true; 
-    public bool getLocalNetworkConnections = false;
+    public bool useTCP;
+    public bool useMainThreadManagerForRPCs; 
+    public bool getLocalNetworkConnections;
     private NetworkManager mgr;
     public GameObject networkManager;
-    public bool DontChangeSceneOnConnect = false;
+    public bool DontChangeSceneOnConnect;
 
     public void Awake()
     {
-        ServerIP = "127.0.0.1";
-        ServerPort = "15672";
-        NetProtocol = "UDP";
+        //ServerIP = "127.0.0.1";
+        //ServerPort = "15672";
+        //NetProtocol = "UDP";
     }
 
     protected void InitServerOptions(ServerOptions _serverOptions)
     {
-        //if (_serverOptions != null)
-        //{
-        //    ServerOptions = _serverOptions;
-        //    ServerIP = ServerOptions.IpAddress.Value;
-        //    ServerPort = ServerOptions.ServerPort.Value;
-        //    NetProtocol = (string)ServerOptions.XProtocol.Value;
-        //    useTCP = NetProtocol.Equals(UIInfoLayer.TCPString) ? true : false;
-        //}
-        //else throw new System.ArgumentNullException(UIInfoLayer.ServerOptsNullMessage);
+        if (_serverOptions != null)
+        {
+            ServerOptions = _serverOptions;
+            ServerIP = ServerOptions.IpAddress.Value;
+            ServerPort = ServerOptions.ServerPort.Value;
+            NetProtocol = (string)ServerOptions.XProtocol.Value;
+            useTCP = NetProtocol.Equals(UIInfoLayer.TCPString) ? true : false;
+        }
+        else throw new System.ArgumentNullException(UIInfoLayer.ServerOptsNullMessage);
     }
 
     protected void InitServer(ServerOptions _serverOptions)
@@ -115,7 +115,7 @@ public class ServerController : MonoBehaviour {
         {
             if (!DontChangeSceneOnConnect)
             {
-                //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
                 Debug.Log("Server seems started correctly");
             }
             else
