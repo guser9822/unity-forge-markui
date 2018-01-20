@@ -102,7 +102,7 @@ public class ServerController : MonoBehaviour {
             return;
         }
 
-        if ( (mgr == null ) && (networkManager.GetComponent<NetworkManager>() == null))
+        if ( mgr == null  && networkManager == null)
         {
             Debug.LogWarning("A network manager was not provided, generating a new one instead");
             networkManager = new GameObject("Network Manager");
