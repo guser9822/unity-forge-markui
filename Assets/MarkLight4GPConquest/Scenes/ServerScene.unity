@@ -37300,7 +37300,7 @@ MonoBehaviour:
   getLocalNetworkConnections: 0
   natServerHost: 
   natServerPort: 15941
-  networkManager: {fileID: 0}
+  networkManager: {fileID: 186558, guid: 79adc0da5b6caf74990d862696696ecd, type: 2}
   DontChangeSceneOnConnect: 0
   masterServerHost: 
   masterServerPort: 15940

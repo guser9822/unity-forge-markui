@@ -20,8 +20,8 @@ public class ServerController : MonoBehaviour {
     public bool getLocalNetworkConnections = false;
     public string natServerHost = string.Empty;
     public ushort natServerPort = 15941;
-    private NetworkManager mgr = null;
-    public GameObject networkManager = null;
+    private NetworkManager mgr;
+    public GameObject networkManager;
     public bool DontChangeSceneOnConnect = false;
     public string masterServerHost = string.Empty;
     public ushort masterServerPort = 15940;
@@ -102,14 +102,13 @@ public class ServerController : MonoBehaviour {
             return;
         }
 
-        if (mgr == null && networkManager == null)
+        if ( (mgr == null ) && (networkManager.GetComponent<NetworkManager>() == null))
         {
             Debug.LogWarning("A network manager was not provided, generating a new one instead");
             networkManager = new GameObject("Network Manager");
             mgr = networkManager.AddComponent<NetworkManager>();
         }
-        else if (mgr == null)
-            mgr = Instantiate(networkManager).GetComponent<NetworkManager>();
+        else mgr = Instantiate(networkManager).GetComponent<NetworkManager>();
 
         // If we are using the master server we need to get the registration data
         JSONNode masterServerData = null;
