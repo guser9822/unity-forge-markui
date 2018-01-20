@@ -15,7 +15,7 @@ public class ServerController : MonoBehaviour {
     public string ServerIP;
     public string ServerPort;
     public string NetProtocol;
-    public bool useTCP;
+    public bool useTCP = false;
     public bool useMainThreadManagerForRPCs = true; 
     public bool getLocalNetworkConnections = false;
     public string natServerHost = string.Empty;
@@ -40,7 +40,8 @@ public class ServerController : MonoBehaviour {
             ServerPort = ServerOptions.ServerPort.Value;
             NetProtocol = (string)ServerOptions.XProtocol.Value;
             useTCP = NetProtocol.Equals(UIInfoLayer.TCPString) ? true : false;
-        }else throw new System.ArgumentNullException(UIInfoLayer.ServerOptsNullMessage);
+        }
+        else throw new System.ArgumentNullException(UIInfoLayer.ServerOptsNullMessage);
     }
 
     protected void InitServer(ServerOptions _serverOptions)
@@ -102,6 +103,7 @@ public class ServerController : MonoBehaviour {
             return;
         }
 
+        //It always create a new NetworkManager..... why?
         if ( mgr == null  && networkManager == null)
         {
             Debug.LogWarning("A network manager was not provided, generating a new one instead");
@@ -109,6 +111,10 @@ public class ServerController : MonoBehaviour {
             mgr = networkManager.AddComponent<NetworkManager>();
         }
         else mgr = Instantiate(networkManager).GetComponent<NetworkManager>();
+
+        /* So, I don't know why Unity can't use the NetworkManager setted from the inspector,
+         * so we need to load dynamically our Dwarf prefab. What a fucking shit. */
+        mgr.DwarfNetworkObject = new GameObject[1] { Resources.Load<GameObject>("Dwarf") };
 
         // If we are using the master server we need to get the registration data
         JSONNode masterServerData = null;

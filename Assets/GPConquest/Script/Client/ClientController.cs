@@ -54,6 +54,7 @@ public class ClientController : MonoBehaviour {
             return;
         }
 
+        //It always create a new NetworkManager..... why?
         if (mgr == null && networkManager == null)
         {
             Debug.LogWarning("A network manager was not provided, generating a new one instead");
@@ -62,6 +63,10 @@ public class ClientController : MonoBehaviour {
         }
         else if (mgr == null)
             mgr = Instantiate(networkManager).GetComponent<NetworkManager>();
+
+        /* So, I don't know why Unity can't use the NetworkManager setted from the inspector,
+             * so we need to load dynamically our Dwarf prefab. What a fucking shit. */
+        mgr.DwarfNetworkObject = new GameObject[1] { Resources.Load<GameObject>("Dwarf") };
 
         mgr.Initialize(networker);
 
