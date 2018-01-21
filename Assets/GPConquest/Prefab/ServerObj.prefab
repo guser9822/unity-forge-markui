@@ -9,56 +9,54 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1243916014756854}
+  m_RootGameObject: {fileID: 1833390663964248}
   m_IsPrefabParent: 1
---- !u!1 &1243916014756854
+--- !u!1 &1833390663964248
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4029237636444028}
-  - component: {fileID: 114799706370031938}
+  - component: {fileID: 4083800585816006}
+  - component: {fileID: 114425485586345232}
   m_Layer: 0
-  m_Name: GPNetManager
+  m_Name: ServerObj
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4029237636444028
+  m_IsActive: 0
+--- !u!4 &4083800585816006
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1243916014756854}
+  m_GameObject: {fileID: 1833390663964248}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 4.976345, y: 0.8935356, z: -5.601824}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114799706370031938
+--- !u!114 &114425485586345232
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1243916014756854}
+  m_GameObject: {fileID: 1833390663964248}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bbe5b082a785e7641bf1a62b930a3f5a, type: 3}
+  m_Script: {fileID: 11500000, guid: 3c20f540651c44e40b17d21303718fd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ChatManagerNetworkObject:
-  - {fileID: 1000012032569418, guid: b454b1be0b2c3fa4fb48430867af7566, type: 2}
-  CubeForgeGameNetworkObject: []
-  DwarfNetworkObject:
-  - {fileID: 1787927050018782, guid: 657658f8da0dbb1488fe2c57a6967984, type: 2}
-  ExampleProximityPlayerNetworkObject:
-  - {fileID: 1000012738253334, guid: feb25ecf90a8d8b4ab922a455249997b, type: 2}
-  NetworkCameraNetworkObject:
-  - {fileID: 139536, guid: 661f29f0c0c86fa47b6015bd602d0ac6, type: 2}
-  TestNetworkObject: []
-  automaticScenes: 1
+  ServerOptions: {fileID: 0}
+  ServerIP: 1234
+  ServerPort: 
+  NetProtocol: 
+  useTCP: 0
+  useMainThreadManagerForRPCs: 0
+  getLocalNetworkConnections: 0
+  networkManager: {fileID: 0}
+  DontChangeSceneOnConnect: 1

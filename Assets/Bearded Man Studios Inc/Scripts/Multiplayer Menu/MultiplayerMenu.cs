@@ -34,11 +34,14 @@ public class MultiplayerMenu : MonoBehaviour
 
 	public bool useTCP = false;
 
-	private void Start()
-	{
-		ipAddress.text = "127.0.0.1";
-		portNumber.text = "15937";
+    private void Awake()
+    {
+        ipAddress.text = "127.0.0.1";
+        portNumber.text = "15937";
+    }
 
+    private void Start()
+	{
 		for (int i = 0; i < ToggledButtons.Length; ++i)
 		{
 			Button btn = ToggledButtons[i].GetComponent<Button>();
