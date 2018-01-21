@@ -10,7 +10,7 @@ public class DwarfController : DwarfBehavior {
 
     public string DwarfName;
     private string[] names = { "Turin", "Gimli", "Erizzoun Hillbuster", "Gaghout", "Axeforged","Tukhot","Barbedbraids"};
-
+    public float speed = 6.0f;
 
     private void Awake()
     {
@@ -29,19 +29,25 @@ public class DwarfController : DwarfBehavior {
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.UpArrow))
-            networkObject.SendRpc(RPC_MOVE, Receivers.AllBuffered, Vector3.up);
-
-        else if (Input.GetKeyDown(KeyCode.DownArrow))
-            networkObject.SendRpc(RPC_MOVE, Receivers.AllBuffered, Vector3.down);
-
-    }
-
-    public override void Move(RpcArgs args)
-    {
-        MainThreadManager.Run(() =>
+         // assign it to the position and rotation specified
+         if (!networkObject.IsOwner)
         {
-            transform.position += args.GetNext<Vector3>();
-        });
+            transform.position = networkObject.netPosition;
+            return;
+        }
+        // Get the movement based on the axis input values
+        Vector3 translation = new Vector3(Input.GetAxis("Horizontal"),
+        Input.GetAxis("Vertical"), 0);
+        // Scale the speed to normalize for processors
+        translation *= speed * Time.deltaTime;
+        // Move the object by the given translation
+        transform.position += translation;
+        // Just a random rotation on all axis
+        transform.Rotate(new Vector3(speed, speed, speed) * 0.25f);
+        // Since we are the owner, tell the network the updated position
+        networkObject.netPosition = transform.position;
+
+
     }
+
 }

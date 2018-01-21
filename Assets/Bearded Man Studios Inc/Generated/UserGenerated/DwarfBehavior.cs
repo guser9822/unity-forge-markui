@@ -4,12 +4,11 @@ using UnityEngine;
 
 namespace BeardedManStudios.Forge.Networking.Generated
 {
-	[GeneratedRPC("{\"types\":[[\"string\"][\"Vector3\"]]")]
-	[GeneratedRPCVariableNames("{\"types\":[[\"dwarfName\"][\"direction\"]]")]
+	[GeneratedRPC("{\"types\":[[\"string\"]]")]
+	[GeneratedRPCVariableNames("{\"types\":[[\"dwarfName\"]]")]
 	public abstract partial class DwarfBehavior : NetworkBehavior
 	{
 		public const byte RPC_INIT_UP_DWARF = 0 + 5;
-		public const byte RPC_MOVE = 1 + 5;
 		
 		public DwarfNetworkObject networkObject = null;
 
@@ -24,7 +23,6 @@ namespace BeardedManStudios.Forge.Networking.Generated
 
 			base.SetupHelperRpcs(networkObject);
 			networkObject.RegisterRpc("InitUpDwarf", InitUpDwarf, typeof(string));
-			networkObject.RegisterRpc("Move", Move, typeof(Vector3));
 
 			networkObject.onDestroy += DestroyGameObject;
 
@@ -104,11 +102,6 @@ namespace BeardedManStudios.Forge.Networking.Generated
 		/// string dwarfName
 		/// </summary>
 		public abstract void InitUpDwarf(RpcArgs args);
-		/// <summary>
-		/// Arguments:
-		/// Vector3 direction
-		/// </summary>
-		public abstract void Move(RpcArgs args);
 
 		// DO NOT TOUCH, THIS GETS GENERATED PLEASE EXTEND THIS CLASS IF YOU WISH TO HAVE CUSTOM CODE ADDITIONS
 	}

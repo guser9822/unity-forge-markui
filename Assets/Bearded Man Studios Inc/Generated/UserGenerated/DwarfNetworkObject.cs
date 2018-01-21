@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace BeardedManStudios.Forge.Networking.Generated
 {
-	[GeneratedInterpol("{\"inter\":[0]")]
+	[GeneratedInterpol("{\"inter\":[0,0.15]")]
 	public partial class DwarfNetworkObject : NetworkObject
 	{
 		public const int IDENTITY = 3;
@@ -45,6 +45,36 @@ namespace BeardedManStudios.Forge.Networking.Generated
 			if (dwarfLevelChanged != null) dwarfLevelChanged(_dwarfLevel, timestep);
 			if (fieldAltered != null) fieldAltered("dwarfLevel", _dwarfLevel, timestep);
 		}
+		private Vector3 _netPosition;
+		public event FieldEvent<Vector3> netPositionChanged;
+		public InterpolateVector3 netPositionInterpolation = new InterpolateVector3() { LerpT = 0.15f, Enabled = true };
+		public Vector3 netPosition
+		{
+			get { return _netPosition; }
+			set
+			{
+				// Don't do anything if the value is the same
+				if (_netPosition == value)
+					return;
+
+				// Mark the field as dirty for the network to transmit
+				_dirtyFields[0] |= 0x2;
+				_netPosition = value;
+				hasDirtyFields = true;
+			}
+		}
+
+		public void SetnetPositionDirty()
+		{
+			_dirtyFields[0] |= 0x2;
+			hasDirtyFields = true;
+		}
+
+		private void RunChange_netPosition(ulong timestep)
+		{
+			if (netPositionChanged != null) netPositionChanged(_netPosition, timestep);
+			if (fieldAltered != null) fieldAltered("netPosition", _netPosition, timestep);
+		}
 
 		protected override void OwnershipChanged()
 		{
@@ -55,6 +85,7 @@ namespace BeardedManStudios.Forge.Networking.Generated
 		public void SnapInterpolations()
 		{
 			dwarfLevelInterpolation.current = dwarfLevelInterpolation.target;
+			netPositionInterpolation.current = netPositionInterpolation.target;
 		}
 
 		public override int UniqueIdentity { get { return IDENTITY; } }
@@ -62,6 +93,7 @@ namespace BeardedManStudios.Forge.Networking.Generated
 		protected override BMSByte WritePayload(BMSByte data)
 		{
 			UnityObjectMapper.Instance.MapBytes(data, _dwarfLevel);
+			UnityObjectMapper.Instance.MapBytes(data, _netPosition);
 
 			return data;
 		}
@@ -72,6 +104,10 @@ namespace BeardedManStudios.Forge.Networking.Generated
 			dwarfLevelInterpolation.current = _dwarfLevel;
 			dwarfLevelInterpolation.target = _dwarfLevel;
 			RunChange_dwarfLevel(timestep);
+			_netPosition = UnityObjectMapper.Instance.Map<Vector3>(payload);
+			netPositionInterpolation.current = _netPosition;
+			netPositionInterpolation.target = _netPosition;
+			RunChange_netPosition(timestep);
 		}
 
 		protected override BMSByte SerializeDirtyFields()
@@ -81,6 +117,8 @@ namespace BeardedManStudios.Forge.Networking.Generated
 
 			if ((0x1 & _dirtyFields[0]) != 0)
 				UnityObjectMapper.Instance.MapBytes(dirtyFieldsData, _dwarfLevel);
+			if ((0x2 & _dirtyFields[0]) != 0)
+				UnityObjectMapper.Instance.MapBytes(dirtyFieldsData, _netPosition);
 
 			// Reset all the dirty fields
 			for (int i = 0; i < _dirtyFields.Length; i++)
@@ -110,6 +148,19 @@ namespace BeardedManStudios.Forge.Networking.Generated
 					RunChange_dwarfLevel(timestep);
 				}
 			}
+			if ((0x2 & readDirtyFlags[0]) != 0)
+			{
+				if (netPositionInterpolation.Enabled)
+				{
+					netPositionInterpolation.target = UnityObjectMapper.Instance.Map<Vector3>(data);
+					netPositionInterpolation.Timestep = timestep;
+				}
+				else
+				{
+					_netPosition = UnityObjectMapper.Instance.Map<Vector3>(data);
+					RunChange_netPosition(timestep);
+				}
+			}
 		}
 
 		public override void InterpolateUpdate()
@@ -121,6 +172,11 @@ namespace BeardedManStudios.Forge.Networking.Generated
 			{
 				_dwarfLevel = (int)dwarfLevelInterpolation.Interpolate();
 				//RunChange_dwarfLevel(dwarfLevelInterpolation.Timestep);
+			}
+			if (netPositionInterpolation.Enabled && !netPositionInterpolation.current.UnityNear(netPositionInterpolation.target, 0.0015f))
+			{
+				_netPosition = (Vector3)netPositionInterpolation.Interpolate();
+				//RunChange_netPosition(netPositionInterpolation.Timestep);
 			}
 		}
 
