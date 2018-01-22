@@ -19,7 +19,7 @@ public class DwarfController : DwarfBehavior {
 
     protected override void NetworkStart()
     {
-        networkObject.SendRpc(RPC_INIT_UP_DWARF, Receivers.AllBuffered, DwarfName);   
+        //networkObject.SendRpc(RPC_INIT_UP_DWARF, Receivers.AllBuffered, DwarfName);   
     }
 
     public override void InitUpDwarf(RpcArgs args)
