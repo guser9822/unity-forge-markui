@@ -42,11 +42,8 @@ public class DwarfController : DwarfBehavior {
         translation *= speed * Time.deltaTime;
         // Move the object by the given translation
         transform.position += translation;
-        // Just a random rotation on all axis
-        transform.Rotate(new Vector3(speed, speed, speed) * 0.25f);
         // Since we are the owner, tell the network the updated position
         networkObject.netPosition = transform.position;
-
 
     }
 
