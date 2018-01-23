@@ -14,14 +14,13 @@ namespace TC.GPConquest.MarkLight4GPConquest
 
         public void Awake()
         {
-            //ServerController = GameObject.FindObjectOfType<ServerController>();
         }
 
         public void StartServer()
         {
             if (ServerOptions != null)
             {
-                //ServerController.StartServer(ServerOptions);
+                ServerController.StartServer(ServerOptions);
             }
             else
             {
@@ -32,7 +31,7 @@ namespace TC.GPConquest.MarkLight4GPConquest
 
         public void StopServer()
         {
-            //ServerController.EndServer();
+            ServerController.EndServer();
         }
 
     }
