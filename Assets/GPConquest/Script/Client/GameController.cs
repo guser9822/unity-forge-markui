@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class ClientController : MonoBehaviour {
+public class GameController : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
