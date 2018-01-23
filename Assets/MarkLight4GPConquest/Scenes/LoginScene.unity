@@ -603,6 +603,7 @@ GameObject:
   - component: {fileID: 51555530}
   - component: {fileID: 51555532}
   - component: {fileID: 51555531}
+  - component: {fileID: 51555533}
   m_Layer: 0
   m_Name: LoginUI
   m_TagString: Untagged
@@ -1093,6 +1094,17 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 51555528}
+--- !u!114 &51555533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 51555528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa72e323883c20347b70b789308056f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &286031446
 GameObject:
   m_ObjectHideFlags: 0
@@ -2450,7 +2462,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 290099479}
   m_TextComponent: {fileID: 1081838774}
   m_Placeholder: {fileID: 1552940186}
   m_ContentType: 0
@@ -32303,7 +32315,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 1529189532}
   m_TextComponent: {fileID: 1886228644}
   m_Placeholder: {fileID: 377187939}
   m_ContentType: 0
