@@ -9,7 +9,7 @@ using BeardedManStudios.Forge.Networking.Unity;
 public class DwarfController : DwarfBehavior {
 
     public string DwarfName;
-    private string[] names = { "Turin", "Gimli", "Erizzoun Hillbuster", "Gaghout", "Axeforged","Tukhot","Barbedbraids"};
+    private string[] names = { "Turin", "Gimli", "Erizzoun Hillbuster", "Gaghout", "Axeforged", "Tukhot", "Barbedbraids" };
     public float speed = 6.0f;
 
     private void Awake()
@@ -19,18 +19,19 @@ public class DwarfController : DwarfBehavior {
 
     protected override void NetworkStart()
     {
-        //networkObject.SendRpc(RPC_INIT_UP_DWARF, Receivers.AllBuffered, DwarfName);   
+        base.NetworkStart();
+        networkObject.SendRpc(RPC_INIT_UP_DWARF, Receivers.AllBuffered, DwarfName);   
     }
 
     public override void InitUpDwarf(RpcArgs args)
     {
-        DwarfName = args.GetNext<string>();
+        //DwarfName = args.GetNext<string>();
     }
 
     private void Update()
     {
-         // assign it to the position and rotation specified
-         if (!networkObject.IsOwner)
+        // assign it to the position and rotation specified
+        if (!networkObject.IsOwner)
         {
             transform.position = networkObject.netPosition;
             return;
