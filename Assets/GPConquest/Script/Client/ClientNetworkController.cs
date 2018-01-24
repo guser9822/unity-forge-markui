@@ -11,9 +11,9 @@ namespace TC.GPConquest
         private void Awake()
         {
             ServerOptions ClientServerOptions = gameObject.AddComponent<ServerOptions>(); 
-            ClientServerOptions.IpAddress.Value = "127.0.0.1";
-            ClientServerOptions.ServerPort.Value = "15937";
-            ClientServerOptions.XProtocol.Value = UIInfoLayer.UDPString;
+            //ClientServerOptions.IpAddress.Value = "127.0.0.1";
+            //ClientServerOptions.ServerPort.Value = "15937";
+            //ClientServerOptions.XProtocol.Value = UIInfoLayer.UDPString;
         }
 
         public override void StartCustomNetworkController(ServerOptions _serverOptions)
