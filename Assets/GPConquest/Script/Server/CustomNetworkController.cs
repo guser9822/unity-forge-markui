@@ -5,23 +5,23 @@ using System.Collections.Generic;
 using TC.GPConquest.MarkLight4GPConquest;
 using UnityEngine;
 
-public class MultiplayerBaseController : MonoBehaviour {
+public class CustomNetworkController : MonoBehaviour {
 
     public ServerOptions ServerOptions;
-    protected string ServerIP;
-    protected string ServerPort;
+    protected string MultiplayerBaseIp;
+    protected string MultiplayerBasePort;
     protected string NetProtocol;
     protected bool useTCP;
     protected NetworkManager mgr;
     public GameObject networkManager;
 
-    protected void InitServerOptions(ServerOptions _serverOptions)
+    private void InitMultiplayerBaseOptions(ServerOptions _serverOptions)
     {
         if (_serverOptions != null)
         {
             ServerOptions = _serverOptions;
-            ServerIP = ServerOptions.IpAddress.Value;
-            ServerPort = ServerOptions.ServerPort.Value;
+            MultiplayerBaseIp = ServerOptions.IpAddress.Value;
+            MultiplayerBasePort = ServerOptions.ServerPort.Value;
             NetProtocol = (string)ServerOptions.XProtocol.Value;
             useTCP = NetProtocol.Equals(UIInfoLayer.TCPString) ? true : false;
         }
@@ -30,14 +30,19 @@ public class MultiplayerBaseController : MonoBehaviour {
 
     protected void InitMultiplayerBase(ServerOptions _serverOptions)
     {
-        InitServerOptions(_serverOptions);
+        InitMultiplayerBaseOptions(_serverOptions);
         if (!useTCP)// Do any firewall opening requests on the operating system
-            NetWorker.PingForFirewall(ushort.Parse(ServerPort));
+            NetWorker.PingForFirewall(ushort.Parse(MultiplayerBasePort));
 
         Rpc.MainThreadRunner = MainThreadManager.Instance;
     }
 
-    protected void Connected(NetWorker networker)
+    public virtual void StartCustomNetworkController(ServerOptions _serverOptions)
+    {
+        InitMultiplayerBase(_serverOptions);
+    }
+
+    protected virtual void Connected(NetWorker networker)
     {
         if (!networker.IsBound)
         {
@@ -55,9 +60,15 @@ public class MultiplayerBaseController : MonoBehaviour {
 
         mgr.Initialize(networker);
 
-        if (networker is IServer)
-            NetworkObject.Flush(networker);
+        //if (networker is IServer)
+        //    NetworkObject.Flush(networker);
 
+    }
+
+    public void CloseMultiplayerBase()
+    {
+        mgr.Disconnect();
+        Destroy(mgr.gameObject);
     }
 
 }

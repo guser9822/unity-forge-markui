@@ -1,18 +1,18 @@
 ﻿using BeardedManStudios.Forge.Networking;
-using BeardedManStudios.Forge.Networking.Unity;
-using BeardedManStudios.Forge.Networking.Lobby;
-using BeardedManStudios.SimpleJSON;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 using TC.GPConquest.MarkLight4GPConquest;
 
 namespace TC.GPConquest
 {
 
-    public class ServerController : MultiplayerBaseController
+    public class ServerNetworkController : CustomNetworkController
     {
+        public override void StartCustomNetworkController(ServerOptions _serverOptions)
+        {
+            base.StartCustomNetworkController(_serverOptions);
+            Host();
+        }
+
         protected void Host()
         {
             NetWorker server;
@@ -25,7 +25,7 @@ namespace TC.GPConquest
             else
             {
                 server = new UDPServer(64);
-                ((UDPServer)server).Connect(ServerIP, ushort.Parse(ServerPort));
+                ((UDPServer)server).Connect(MultiplayerBaseIp, ushort.Parse(MultiplayerBasePort));
             }
 
             server.playerTimeout += (player, sender) =>
@@ -36,16 +36,10 @@ namespace TC.GPConquest
             Connected(server);
         }
 
-        public void StartServer(ServerOptions _serverOptions)
+        protected override void Connected(NetWorker networker)
         {
-            InitMultiplayerBase(_serverOptions);
-            Host();
-        }
-
-        public void EndServer()
-        {
-            mgr.Disconnect();
-            Destroy(mgr.gameObject);
+            base.Connected(networker);
+            NetworkObject.Flush(networker);
         }
 
     }

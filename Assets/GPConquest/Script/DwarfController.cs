@@ -1,10 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using BeardedManStudios.Forge.Networking.Generated;
 using BeardedManStudios.Forge.Networking;
-using System;
-using BeardedManStudios.Forge.Networking.Unity;
 
 namespace TC.GPConquest
 {
@@ -28,7 +24,7 @@ namespace TC.GPConquest
 
         public override void InitUpDwarf(RpcArgs args)
         {
-            //DwarfName = args.GetNext<string>();
+            DwarfName = args.GetNext<string>();
         }
 
         private void Update()

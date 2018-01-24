@@ -1,7 +1,5 @@
-﻿using UnityEngine;
-using MarkLight.Views.UI;
+﻿using MarkLight.Views.UI;
 using MarkLight;
-using TC.GPConquest;
 
 namespace TC.GPConquest.MarkLight4GPConquest
 {
@@ -10,7 +8,7 @@ namespace TC.GPConquest.MarkLight4GPConquest
         public _string ServerStatus;
         public GenericPopUp GenericPopUp;
         public ServerOptions ServerOptions;
-        public ServerController ServerController;
+        public ServerNetworkController ServerController;
 
         public void Awake()
         {
@@ -20,7 +18,7 @@ namespace TC.GPConquest.MarkLight4GPConquest
         {
             if (ServerOptions != null)
             {
-                ServerController.StartServer(ServerOptions);
+                ServerController.StartCustomNetworkController(ServerOptions);
             }
             else
             {
@@ -31,7 +29,7 @@ namespace TC.GPConquest.MarkLight4GPConquest
 
         public void StopServer()
         {
-            ServerController.EndServer();
+            ServerController.CloseMultiplayerBase();
         }
 
     }

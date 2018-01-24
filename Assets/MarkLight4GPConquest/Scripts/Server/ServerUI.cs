@@ -20,13 +20,13 @@ namespace TC.GPConquest.MarkLight4GPConquest {
             //Sets references
             ServerStart.ServerOptions = ServerOptions;
             ServerDisconnectButton.IsVisible.Value = false;
-            ServerStart.ServerController = gameObject.GetComponent<ServerController>();
+            ServerStart.ServerController = gameObject.GetComponent<ServerNetworkController>();
         }
 
         private void Start()
         {
             //When ServerUI starts(ServerOptions is already initialized), uses default settings for the server
-            ServerOptions.DefaultLocalServer();
+            //ServerOptions.SetServerOptions();
         }
 
         public void StartServerActivation()
