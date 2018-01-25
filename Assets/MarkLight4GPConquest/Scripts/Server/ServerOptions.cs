@@ -6,8 +6,8 @@ namespace TC.GPConquest.MarkLight4GPConquest
 
     public class ServerOptions : UIView
     {
-        public ComboBox ComboBoxProtocols;
         public ObservableList<string> InternetProtocols;
+        public ComboBox ComboBoxProtocols;
         public InputField InputIp;
         public InputField InputPort;
         [MapTo("InputIp.Text")]
@@ -42,9 +42,7 @@ namespace TC.GPConquest.MarkLight4GPConquest
             ServerPort.Value = _port;
             //Sets UDP as default internet protocol
             InternetProtocols.SelectedIndex = _protocol;//sets the list on UDP
-            //ComboBoxProtocols.SelectedItem.InternalValue = InternetProtocols.SelectedItem;
-            //ComboBoxProtocols.SelectedItem.Value  InternetProtocols.SelectedItem;//sets the UI combobox on UDP
-            //XProtocol.Value = ComboBoxProtocols.SelectedItem.Value;
+            XProtocol.Value = ComboBoxProtocols.SelectedItem.Value;
          }
     }
 

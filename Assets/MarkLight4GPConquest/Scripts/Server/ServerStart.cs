@@ -12,7 +12,7 @@ namespace TC.GPConquest.MarkLight4GPConquest
 
         public void Awake()
         {
-
+            ServerController = FindObjectOfType<ServerNetworkController>();
         }
 
         public void StartServer()
