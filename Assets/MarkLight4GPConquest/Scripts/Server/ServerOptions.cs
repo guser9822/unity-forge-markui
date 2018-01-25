@@ -34,16 +34,18 @@ namespace TC.GPConquest.MarkLight4GPConquest
             return InternetProtocols;
         }
 
-        //_protocol = 0 = UDP, _protocol = 0 = TCP
+        //_protocol = 0 = UDP, _protocol = 1 = TCP
         public void SetServerOptions(string _ip = "127.0.0.1", string _port = "15937",int _protocol = 0)
         {
             //Sets up a local UDP server as default
             IpAddress.Value = _ip;
             ServerPort.Value = _port;
             //Sets UDP as default internet protocol
-            InternetProtocols.SelectedIndex = _protocol;
-            XProtocol = ComboBoxProtocols.SelectedItem;
-        }
+            //InternetProtocols.SelectedIndex = _protocol;//sets the list on UDP
+            //ComboBoxProtocols.SelectedItem.InternalValue = InternetProtocols.SelectedItem;
+            //ComboBoxProtocols.SelectedItem.Value  InternetProtocols.SelectedItem;//sets the UI combobox on UDP
+            //XProtocol.Value = ComboBoxProtocols.SelectedItem.Value;
+         }
     }
 
 }
