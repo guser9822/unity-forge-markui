@@ -7,6 +7,7 @@ using UnityEngine;
 
 public class CustomNetworkController : MonoBehaviour {
 
+    [HideInInspector]
     public ServerOptions ServerOptions;
     protected string MultiplayerBaseIp;
     protected string MultiplayerBasePort;

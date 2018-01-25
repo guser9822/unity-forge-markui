@@ -41,7 +41,7 @@ namespace TC.GPConquest.MarkLight4GPConquest
             IpAddress.Value = _ip;
             ServerPort.Value = _port;
             //Sets UDP as default internet protocol
-            //InternetProtocols.SelectedIndex = _protocol;//sets the list on UDP
+            InternetProtocols.SelectedIndex = _protocol;//sets the list on UDP
             //ComboBoxProtocols.SelectedItem.InternalValue = InternetProtocols.SelectedItem;
             //ComboBoxProtocols.SelectedItem.Value  InternetProtocols.SelectedItem;//sets the UI combobox on UDP
             //XProtocol.Value = ComboBoxProtocols.SelectedItem.Value;

@@ -13,6 +13,12 @@ namespace TC.GPConquest.MarkLight4GPConquest {
         public Button StartServerButton;
         public Button ServerOptionsButton;
         public Button ServerDisconnectButton;
+        private ServerNetworkController ServerNetworkController;
+
+        private void Awake()
+        {
+            ServerNetworkController = GetComponent<ServerNetworkController>();
+        }
 
         public override void Initialize()
         {
@@ -20,13 +26,13 @@ namespace TC.GPConquest.MarkLight4GPConquest {
             //Sets references
             ServerStart.ServerOptions = ServerOptions;
             ServerDisconnectButton.IsVisible.Value = false;
-            ServerStart.ServerController = gameObject.GetComponent<ServerNetworkController>();
+            ServerStart.ServerController = ServerNetworkController;
         }
 
         private void Start()
         {
             //When ServerUI starts(ServerOptions is already initialized), uses default settings for the server
-            //ServerOptions.SetServerOptions();
+
         }
 
         public void StartServerActivation()

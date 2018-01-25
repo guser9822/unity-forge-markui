@@ -12,6 +12,7 @@ namespace TC.GPConquest.MarkLight4GPConquest
 
         public void Awake()
         {
+
         }
 
         public void StartServer()

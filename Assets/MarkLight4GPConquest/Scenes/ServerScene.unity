@@ -35231,6 +35231,7 @@ GameObject:
   - component: {fileID: 1717143819}
   - component: {fileID: 1717143821}
   - component: {fileID: 1717143820}
+  - component: {fileID: 1717143822}
   m_Layer: 0
   m_Name: ServerUI
   m_TagString: Untagged
@@ -35725,6 +35726,19 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1717143817}
+--- !u!114 &1717143822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1717143817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c20f540651c44e40b17d21303718fd4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ServerOptions: {fileID: 0}
+  networkManager: {fileID: 186558, guid: 79adc0da5b6caf74990d862696696ecd, type: 2}
 --- !u!1 &1729034171
 GameObject:
   m_ObjectHideFlags: 0
