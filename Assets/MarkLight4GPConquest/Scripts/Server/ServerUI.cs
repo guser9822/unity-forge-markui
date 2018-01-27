@@ -25,7 +25,7 @@ namespace TC.GPConquest.MarkLight4GPConquest {
         private void Start()
         {
             //When ServerUI starts(ServerOptions is already initialized), uses default settings for the server
-
+            ServerOptions.SetServerOptions();
         }
 
         public void StartServerActivation()

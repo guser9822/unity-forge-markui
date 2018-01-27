@@ -7,9 +7,9 @@ namespace TC.GPConquest
 
     public class ServerNetworkController : CustomNetworkController
     {
-        public override void StartCustomNetworkController(ServerOptions _serverOptions)
+        public override void StartCustomNetworkController(ConnectionInfo _connectionInfo)
         {
-            base.StartCustomNetworkController(_serverOptions);
+            base.StartCustomNetworkController(_connectionInfo);
             Host();
         }
 
@@ -25,7 +25,7 @@ namespace TC.GPConquest
             else
             {
                 server = new UDPServer(64);
-                ((UDPServer)server).Connect(MultiplayerBaseIp, ushort.Parse(MultiplayerBasePort));
+                ((UDPServer)server).Connect(ConnectionInfo.IpAddress, ushort.Parse(ConnectionInfo.ServerPort));
             }
 
             server.playerTimeout += (player, sender) =>
@@ -39,7 +39,8 @@ namespace TC.GPConquest
         protected override void Connected(NetWorker networker)
         {
             base.Connected(networker);
-            NetworkObject.Flush(networker);
+            if (networker is IServer)
+                NetworkObject.Flush(networker);
         }
 
     }

@@ -5,71 +5,70 @@ using System.Collections.Generic;
 using TC.GPConquest.MarkLight4GPConquest;
 using UnityEngine;
 
-public class CustomNetworkController : MonoBehaviour {
+namespace TC.GPConquest {
 
-    [HideInInspector]
-    public ServerOptions ServerOptions;
-    protected string MultiplayerBaseIp;
-    protected string MultiplayerBasePort;
-    protected string NetProtocol;
-    protected bool useTCP;
-    protected NetworkManager mgr;
-    public GameObject networkManager;
-
-    private void InitMultiplayerBaseOptions(ServerOptions _serverOptions)
+    public class CustomNetworkController : MonoBehaviour
     {
-        if (_serverOptions != null)
+
+        public ConnectionInfo ConnectionInfo;
+        protected bool useTCP;
+        protected NetworkManager mgr;
+        public GameObject networkManager;
+
+        private void InitMultiplayerBaseOptions(ConnectionInfo _connectionInfo)
         {
-            ServerOptions = _serverOptions;
-            MultiplayerBaseIp = ServerOptions.IpAddress.Value;
-            MultiplayerBasePort = ServerOptions.ServerPort.Value;
-            NetProtocol = (string)ServerOptions.XProtocol.Value;
-            useTCP = NetProtocol.Equals(UIInfoLayer.TCPString) ? true : false;
-        }
-        else throw new System.ArgumentNullException(UIInfoLayer.ServerOptsNullMessage);
-    }
-
-    protected void InitMultiplayerBase(ServerOptions _serverOptions)
-    {
-        InitMultiplayerBaseOptions(_serverOptions);
-        if (!useTCP)// Do any firewall opening requests on the operating system
-            NetWorker.PingForFirewall(ushort.Parse(MultiplayerBasePort));
-
-        Rpc.MainThreadRunner = MainThreadManager.Instance;
-    }
-
-    public virtual void StartCustomNetworkController(ServerOptions _serverOptions)
-    {
-        InitMultiplayerBase(_serverOptions);
-    }
-
-    protected virtual void Connected(NetWorker networker)
-    {
-        if (!networker.IsBound)
-        {
-            Debug.LogError("NetWorker failed to bind");
-            return;
+            if (_connectionInfo != null)
+            {
+                ConnectionInfo = _connectionInfo;
+                useTCP = ConnectionInfo.InternetProtocol.Equals(UIInfoLayer.TCPString) ? true : false;
+            }
+            else throw new System.ArgumentNullException(UIInfoLayer.ConnectionInfoNullMessage);
         }
 
-        if (mgr == null && networkManager == null)
+        protected void InitMultiplayerBase(ConnectionInfo _connectionInfo)
         {
-            Debug.LogWarning("A network manager was not provided, generating a new one instead");
-            networkManager = new GameObject("Network Manager");
-            mgr = networkManager.AddComponent<NetworkManager>();
+            InitMultiplayerBaseOptions(_connectionInfo);
+            if (!useTCP)// Do any firewall opening requests on the operating system
+                NetWorker.PingForFirewall(ushort.Parse(ConnectionInfo.ServerPort));
+
+            Rpc.MainThreadRunner = MainThreadManager.Instance;
         }
-        else mgr = Instantiate(networkManager).GetComponent<NetworkManager>();
 
-        mgr.Initialize(networker);
+        public virtual void StartCustomNetworkController(ConnectionInfo _connectionInfo)
+        {
+            InitMultiplayerBase(_connectionInfo);
+        }
 
-        //if (networker is IServer)
-        //    NetworkObject.Flush(networker);
+        protected virtual void Connected(NetWorker networker)
+        {
+            if (!networker.IsBound)
+            {
+                Debug.LogError("NetWorker failed to bind");
+                return;
+            }
 
-    }
+            if (mgr == null && networkManager == null)
+            {
+                Debug.LogWarning("A network manager was not provided, generating a new one instead");
+                networkManager = new GameObject("Network Manager");
+                mgr = networkManager.AddComponent<NetworkManager>();
+            }
+            else mgr = Instantiate(networkManager).GetComponent<NetworkManager>();
 
-    public void CloseMultiplayerBase()
-    {
-        mgr.Disconnect();
-        Destroy(mgr.gameObject);
+            mgr.Initialize(networker);
+
+            //if (networker is IServer)
+            //    NetworkObject.Flush(networker);
+
+        }
+
+        public void CloseMultiplayerBase()
+        {
+            mgr.Disconnect();
+            Destroy(mgr.gameObject);
+        }
+
     }
 
 }
+

@@ -10,6 +10,7 @@ namespace TC.GPConquest.MarkLight4GPConquest
 
         #region Error messages
         public static readonly string ServerOptsNullMessage = "Server options can't be null.";
+        public static readonly string ConnectionInfoNullMessage = "Connection infomartion are null.";
         #endregion
         #region UI user messages/label
         public static readonly string StartServerLabel = "Start Server";

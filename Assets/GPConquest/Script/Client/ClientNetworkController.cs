@@ -6,26 +6,16 @@ namespace TC.GPConquest
 {
     public class ClientNetworkController : CustomNetworkController
     {
-        protected ServerOptions ClientServerOptions;
-
-        private void Awake()
+        public override void StartCustomNetworkController(ConnectionInfo _connectionInfo)
         {
-            ServerOptions ClientServerOptions = gameObject.AddComponent<ServerOptions>(); 
-            //ClientServerOptions.IpAddress.Value = "127.0.0.1";
-            //ClientServerOptions.ServerPort.Value = "15937";
-            //ClientServerOptions.XProtocol.Value = UIInfoLayer.UDPString;
-        }
-
-        public override void StartCustomNetworkController(ServerOptions _serverOptions)
-        {
-            base.StartCustomNetworkController(_serverOptions);
+            base.StartCustomNetworkController(_connectionInfo);
             Connect();
         }
 
         public void Connect()
         {
             ushort port;
-            if (!ushort.TryParse(MultiplayerBasePort, out port))
+            if (!ushort.TryParse(ConnectionInfo.ServerPort, out port))
             {
                 Debug.LogError("The supplied port number is not within the allowed range 0-" + ushort.MaxValue);
                 return;
@@ -36,12 +26,12 @@ namespace TC.GPConquest
             if (useTCP)
             {
                 client = new TCPClient();
-                ((TCPClient)client).Connect(MultiplayerBaseIp, (ushort)port);
+                ((TCPClient)client).Connect(ConnectionInfo.IpAddress, (ushort)port);
             }
             else
             {
                 client = new UDPClient();
-                ((UDPClient)client).Connect(MultiplayerBaseIp, (ushort)port);
+                ((UDPClient)client).Connect(ConnectionInfo.IpAddress, (ushort)port);
             }
 
             Connected(client);

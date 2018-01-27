@@ -22,7 +22,6 @@ namespace TC.GPConquest.MarkLight4GPConquest
             base.Initialize();
             // initialize and populate ip list
             InternetProtocols = InitializeIPList(UIInfoLayer.InternetProtocolsList);
-            SetServerOptions();
         }
 
         private ObservableList<string> InitializeIPList(params string[] ips)
@@ -42,7 +41,7 @@ namespace TC.GPConquest.MarkLight4GPConquest
             ServerPort.Value = _port;
             //Sets UDP as default internet protocol
             InternetProtocols.SelectedIndex = _protocol;//sets the list on UDP
-            XProtocol.Value = ComboBoxProtocols.SelectedItem.Value;
+            XProtocol = ComboBoxProtocols.SelectedItem;
          }
     }
 
