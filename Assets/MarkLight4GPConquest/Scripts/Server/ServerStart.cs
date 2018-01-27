@@ -1,5 +1,6 @@
 ﻿using MarkLight.Views.UI;
 using MarkLight;
+using System;
 
 namespace TC.GPConquest.MarkLight4GPConquest
 {
@@ -8,15 +9,19 @@ namespace TC.GPConquest.MarkLight4GPConquest
         public _string ServerStatus;
         public GenericPopUp GenericPopUp;
         public ServerOptions ServerOptions;
-        public ServerNetworkController ServerController;
         private ConnectionInfo ConnectionInfo; 
 
         public void Awake()
         {
             /* We add this components here because when you update the view,
             all references setted by the inspector are lost */
-            ServerController = FindObjectOfType<ServerNetworkController>();
+            /*ServerController =*/ 
             ConnectionInfo = gameObject.AddComponent<ConnectionInfo>();
+        }
+
+        private void Start()
+        {
+            
         }
 
         public void StartServer()
@@ -27,7 +32,7 @@ namespace TC.GPConquest.MarkLight4GPConquest
                     ServerOptions.ServerPort,
                     (string)ServerOptions.XProtocol.Value);
 
-                ServerController.StartCustomNetworkController(ConnectionInfo);
+                FindMultiplayerController().StartCustomNetworkController(ConnectionInfo);
             }
             else
             {
@@ -38,7 +43,22 @@ namespace TC.GPConquest.MarkLight4GPConquest
 
         public void StopServer()
         {
-            ServerController.CloseMultiplayerBase();
+            FindMultiplayerController().CloseMultiplayerBase();
+        }
+
+        /** :::: NOTE ::::
+            Declaring a class attribute ServerNetworkController does not work, the reference is continously lost due,
+            I believe, the refresh  meccanism  on the views of MarkLightUI; so, whenever we will need inside our UView 
+            of a particular object active in the scene it will need to be tagged first, in order to find that specific 
+            object and then 'find' everytime.
+        */
+        private ServerNetworkController FindMultiplayerController()
+        {
+            return Array.Find<ServerNetworkController>(
+                    FindObjectsOfType<ServerNetworkController>(),
+                        s => s.gameObject.tag.Equals("ServerController") &&
+                        s.gameObject.GetComponent<ServerNetworkController>()
+                    );
         }
 
     }

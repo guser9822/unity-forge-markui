@@ -1,10 +1,8 @@
 ﻿using BeardedManStudios.Forge.Networking;
 using UnityEngine;
-using TC.GPConquest.MarkLight4GPConquest;
 
 namespace TC.GPConquest
 {
-
     public class ServerNetworkController : CustomNetworkController
     {
         public override void StartCustomNetworkController(ConnectionInfo _connectionInfo)

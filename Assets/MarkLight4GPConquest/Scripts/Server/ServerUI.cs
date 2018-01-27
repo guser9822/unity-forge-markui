@@ -1,6 +1,5 @@
 ﻿using MarkLight.Views.UI;
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
 namespace TC.GPConquest.MarkLight4GPConquest {
