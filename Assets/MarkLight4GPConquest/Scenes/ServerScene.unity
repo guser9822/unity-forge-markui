@@ -14893,7 +14893,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c20f540651c44e40b17d21303718fd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ConnectionInfo: {fileID: 0}
   networkManager: {fileID: 186558, guid: 79adc0da5b6caf74990d862696696ecd, type: 2}
 --- !u!4 &738680167
 Transform:

@@ -37,8 +37,8 @@ namespace TC.GPConquest
         protected override void Connected(NetWorker networker)
         {
             base.Connected(networker);
-            if (networker is IServer)
-                NetworkObject.Flush(networker);
+            //if (networker is IServer)
+            //    NetworkObject.Flush(networker);
         }
 
     }
