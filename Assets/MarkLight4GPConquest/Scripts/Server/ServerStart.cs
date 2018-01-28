@@ -15,13 +15,7 @@ namespace TC.GPConquest.MarkLight4GPConquest
         {
             /* We add this components here because when you update the view,
             all references setted by the inspector are lost */
-            /*ServerController =*/ 
             ConnectionInfo = gameObject.AddComponent<ConnectionInfo>();
-        }
-
-        private void Start()
-        {
-            
         }
 
         public void StartServer()

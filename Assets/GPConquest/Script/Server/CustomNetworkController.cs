@@ -7,8 +7,7 @@ namespace TC.GPConquest {
 
     public class CustomNetworkController : MonoBehaviour
     {
-
-        public ConnectionInfo ConnectionInfo;
+        protected ConnectionInfo ConnectionInfo;
         protected bool useTCP;
         protected NetworkManager mgr;
         public GameObject networkManager;

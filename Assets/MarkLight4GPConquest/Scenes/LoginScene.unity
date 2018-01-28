@@ -1061,7 +1061,6 @@ MonoBehaviour:
   InputUsername: {fileID: 290099477}
   InputPass: {fileID: 1529189530}
   LogInButton: {fileID: 477223000}
-  ClientNetworkController: {fileID: 0}
   ConnectionInfo: {fileID: 0}
 --- !u!114 &51555531
 MonoBehaviour:
@@ -4494,48 +4493,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 477222998}
---- !u!1001 &742989542
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4627004517762350, guid: 6692e118adbee244aa1e654cb07b79dc, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 3.6982822
-      objectReference: {fileID: 0}
-    - target: {fileID: 4627004517762350, guid: 6692e118adbee244aa1e654cb07b79dc, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 5.059252
-      objectReference: {fileID: 0}
-    - target: {fileID: 4627004517762350, guid: 6692e118adbee244aa1e654cb07b79dc, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 5.954302
-      objectReference: {fileID: 0}
-    - target: {fileID: 4627004517762350, guid: 6692e118adbee244aa1e654cb07b79dc, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4627004517762350, guid: 6692e118adbee244aa1e654cb07b79dc, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4627004517762350, guid: 6692e118adbee244aa1e654cb07b79dc, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4627004517762350, guid: 6692e118adbee244aa1e654cb07b79dc, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4627004517762350, guid: 6692e118adbee244aa1e654cb07b79dc, type: 2}
-      propertyPath: m_RootOrder
-      value: 3
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 6692e118adbee244aa1e654cb07b79dc, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &850738703
 GameObject:
   m_ObjectHideFlags: 0
