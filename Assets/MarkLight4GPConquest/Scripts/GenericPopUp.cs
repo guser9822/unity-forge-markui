@@ -10,7 +10,8 @@ namespace TC.GPConquest.MarkLight4GPConquest
     public class GenericPopUp : UIView
     {
         public Window GenericWindow;
-        public string GenericPopUpMessage;
+        public _string GenericPopUpMessage;
+        
 
         public void Start()
         {
