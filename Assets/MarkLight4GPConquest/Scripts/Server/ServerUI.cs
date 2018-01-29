@@ -1,6 +1,5 @@
 ﻿using MarkLight.Views.UI;
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
 namespace TC.GPConquest.MarkLight4GPConquest {
@@ -20,13 +19,12 @@ namespace TC.GPConquest.MarkLight4GPConquest {
             //Sets references
             ServerStart.ServerOptions = ServerOptions;
             ServerDisconnectButton.IsVisible.Value = false;
-            ServerStart.ServerController = gameObject.GetComponent<ServerController>();
         }
 
         private void Start()
         {
             //When ServerUI starts(ServerOptions is already initialized), uses default settings for the server
-            ServerOptions.DefaultLocalServer();
+            ServerOptions.SetServerOptions();
         }
 
         public void StartServerActivation()

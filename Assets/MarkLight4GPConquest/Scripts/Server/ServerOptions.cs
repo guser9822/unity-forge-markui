@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using MarkLight.Views.UI;
+﻿using MarkLight.Views.UI;
 using MarkLight;
 
 namespace TC.GPConquest.MarkLight4GPConquest
@@ -9,8 +6,8 @@ namespace TC.GPConquest.MarkLight4GPConquest
 
     public class ServerOptions : UIView
     {
-        public ComboBox ComboBoxProtocols;
         public ObservableList<string> InternetProtocols;
+        public ComboBox ComboBoxProtocols;
         public InputField InputIp;
         public InputField InputPort;
         [MapTo("InputIp.Text")]
@@ -36,15 +33,16 @@ namespace TC.GPConquest.MarkLight4GPConquest
             return InternetProtocols;
         }
 
-        public void DefaultLocalServer()
+        //_protocol = 0 = UDP, _protocol = 1 = TCP
+        public void SetServerOptions(string _ip = "127.0.0.1", string _port = "15937",int _protocol = 0)
         {
             //Sets up a local UDP server as default
-            IpAddress.Value = "127.0.0.1";
-            ServerPort.Value = "15672";
+            IpAddress.Value = _ip;
+            ServerPort.Value = _port;
             //Sets UDP as default internet protocol
-            InternetProtocols.SelectedIndex = 0;
+            InternetProtocols.SelectedIndex = _protocol;//sets the list on UDP
             XProtocol = ComboBoxProtocols.SelectedItem;
-        }
+         }
     }
 
 }
