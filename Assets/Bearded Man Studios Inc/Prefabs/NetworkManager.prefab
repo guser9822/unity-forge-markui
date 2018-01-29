@@ -48,6 +48,8 @@ MonoBehaviour:
   NetworkCameraNetworkObject:
   - {fileID: 139536, guid: 661f29f0c0c86fa47b6015bd602d0ac6, type: 2}
   TestNetworkObject: []
+  DwarfNetworkObject:
+  - {fileID: 1441629980939388, guid: 657658f8da0dbb1488fe2c57a6967984, type: 2}
   automaticScenes: 1
 --- !u!1001 &100100000
 Prefab:
